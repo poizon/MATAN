@@ -51,13 +51,13 @@ post '/config' => sub {
   my $self   = shift;
   my $model   = $self->session('id') || '1';# читаем id из куков
   $model =~ s/[^0-9]+//g;
-  my @usopt = $self->param('usopt');
+  my $usopt = $self->every_param('usopt');
   my $prn = MTN::Printer->new(idprinters => $model);
   $prn->load;
   my $pic = MTN::Picture::Manager->get_pictures(query => [model => $prn->model]);
   my $opt = MTN::Option::Manager->get_options(query => [model => $prn->model, include => 1]);
-  my $selopt = MTN::Option::Manager->get_options(query => [idoptions => \@usopt]);
-  $log->info(Dumper(@usopt));
+  my $selopt = MTN::Option::Manager->get_options(query => [idoptions => $usopt]);
+  #$log->info(Dumper(@usopt));
   $self->stash(
                model     => $prn->model,
                id        => $model,
