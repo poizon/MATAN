@@ -1,0 +1,43 @@
+%=include 'header';
+<!-- NAVBAR
+================================================== -->
+  <body>
+    
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+<hr>
+       <!-- Three columns of text below the carousel -->
+      <div class="row">
+        
+        % foreach my $p(@$row1)
+       %{
+        <div class="col-md-3">
+          <img class="img-thumbnail" src="/img/<%= $p->foto_main %>" alt="Matan Barak <%= $p->model %>" style="width: 100px; height: 100px;">
+          <h2>Matan Barak <%= $p->model %></h2>
+          <p><%= $p->description  %></p>
+          <p><a class="btn btn-default" href="/model/<%= $p->idprinters  %>.html" role="button">Выбрать &raquo;</a></p>
+        </div>
+       % }
+       
+      </div>
+ <hr>     
+      <div class="row">
+        
+        % foreach my $p(@$row2)
+       %{
+        <div class="col-md-3">
+          <img class="img-thumbnail" src="/img/<%= $p->foto_main %>" alt="Matan Barak <%= $p->model %>" style="width: 100px; height: 100px;">
+          <h2>Matan Barak <%= $p->model %></h2>
+          <p><%= $p->description  %></p>
+          <p><a class="btn btn-default" href="/model/<%= $p->idprinters  %>.html" role="button">Выбрать &raquo;</a></p>
+        </div>
+       % }
+       
+      </div>
+ 
+      
+%=include 'footer';
+
