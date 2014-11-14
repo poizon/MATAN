@@ -28,44 +28,7 @@
   </head>
 
 <body>
-<div class="navbar-wrapper">
-      <div class="container">
-
-        <div class="navbar navbar-default navbar-static-top" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Matan</a>
-            </div>
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="/">На главную</a></li>
-                <li><a href="#about">О производителе</a></li>
-                <li><a href="#contact">Контакты</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Инфо <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Характеристики</a></li>
-                    <li><a href="#">Комплектации и цены</a></li>
-                    <li><a href="#">Акксессуары</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header">О Продаже</li>
-                    <li><a href="#">Лизинг</a></li>
-                    <li><a href="#">Условия поставки</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
+%= include 'menu';
 
 
     <!-- Carousel
@@ -114,10 +77,10 @@
           <li class="active"><a href="#">Опции</a></li>
           <li><a href="#">Итого</a></li>
           <li><a href="#">Сервис</a></li>
-          <li><a href="#">Брошюра</a></li>
+          <li><a href="/download.html">Брошюра</a></li>
         </ul>
       </div>
-<form role="form" method="POST" action="/config">
+<form role="form" method="POST" action="/config.html">
   <div class="form-group">
 % foreach my $opt(@$options) {
 % if ($opt->include) {

@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.ico">
 
-    <title>Matan Barak <%= $model %></title>
+    <title>Matan Barak Брошюра</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -75,46 +75,13 @@
       <div class="masthead">
         <ul class="nav nav-justified">
           <li><a href="/model/<%= $id %>.html">Опции</a></li>
-          <li class="active"><a href="#">Итого</a></li>
+          <li><a href="#">Итого</a></li>
           <li><a href="#">Сервис</a></li>
-          <li><a href="/download.html">Брошюра</a></li>
+          <li class="active"><a href="#">Брошюра</a></li>
         </ul>
       </div>
 <table class="table table-hover">
-  <thead>
-        <tr>
-          <th>#</th>
-          <th>Название</th>
-          <th>Описание</th>
-          <th>Цена</th>
-        </tr>
-      </thead>
-   <tfoot>
-  <tr>
-   <td colspan="3">Итого:</td>
-   <td>Звоните </td>
-  </tr>
- </tfoot>
-      <tbody>
-   % my $i=1;
-% foreach my $opt(@$selopt) {      
-  <tr class="success">
-  <td><%= $i++ %></td>
-  <td><%= $opt->name %></td>
-  <td><%= $opt->description %></td>
-  <td>звоните</td>
-</tr>
-%}
-
-   % foreach my $opt(@$options) {      
-  <tr>
-  <td><%= $i++ %></td>
-  <td><%= $opt->name %></td>
-  <td><%= $opt->description %></td>
-  <td><%= $opt->price %> руб.</td>
-</tr>
-  %}
-  </tbody>
+<tr><td><a href="" target="_blank">Скачать брошюру</a></td></tr>
 </table>
 <hr>
     <!-- Bootstrap core JavaScript
