@@ -76,15 +76,15 @@
         <ul class="nav nav-justified">
           <li><a href="/model/<%= $id %>.html">Опции</a></li>
           <li><a href="#">Итого</a></li>
-          <li><a href="/service.html">Сервис</a></li>
-          <li class="active"><a href="#">Брошюра</a></li>
+          <li  class="active"><a href="/service.html">Сервис</a></li>
+          <li><a href="#">Брошюра</a></li>
         </ul>
       </div>
 <table class="table table-hover">
-  <thead><td class="active">Материалы для скачивания:</td></thead>
+  <thead><td class="active">Качественный гарантийный и пост-гарантийный сервис от Гифтек</td></thead>
   <tfoot><td></td></tfoot>
   <tbody>
-<tr><td><a href="" target="_blank">Скачать брошюру Matan Barak</a></td></tr>
+<tr><td><img src="/img/service/Alex.jpg"></td></tr>
 </tbody>
 </table>
 <hr>

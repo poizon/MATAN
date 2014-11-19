@@ -81,17 +81,36 @@ get '/download' => sub {
   my $prn = MTN::Printer->new(idprinters => $model);
   $prn->load;
   my $pic = MTN::Picture::Manager->get_pictures(query => [model => $prn->model]);
-  my $opt = MTN::Option::Manager->get_options(query => [model => $prn->model, include => 1]);
+  #my $opt = MTN::Option::Manager->get_options(query => [model => $prn->model, include => 1]);
   $self->stash(
                id        => $model,
                model     => $prn->model,
                foto_main => $prn->foto_main,
                descr     => $prn->description,
                pictures  => $pic,
-               options   => $opt,
+               #options   => $opt,
               );
   
   $self->render('download');  
+};
+
+get '/service' => sub {
+  my $self   = shift;
+  my $model   = $self->session('id') || '1';# читаем id из куков
+  $model =~ s/[^0-9]+//g;
+  my $prn = MTN::Printer->new(idprinters => $model);
+  $prn->load;
+  my $pic = MTN::Picture::Manager->get_pictures(query => [model => $prn->model]);
+  #my $opt = MTN::Option::Manager->get_options(query => [model => $prn->model, include => 1]);
+  $self->stash(
+               id        => $model,
+               model     => $prn->model,
+               foto_main => $prn->foto_main,
+               descr     => $prn->description,
+               pictures  => $pic,
+               #options   => $opt,
+              );
+  $self->render('service'); 
 };
 
 app->secrets([$cfg->{secret}]);

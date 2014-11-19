@@ -76,7 +76,7 @@
         <ul class="nav nav-justified">
           <li><a href="/model/<%= $id %>.html">Опции</a></li>
           <li class="active"><a href="#">Итого</a></li>
-          <li><a href="#">Сервис</a></li>
+          <li><a href="/service.html">Сервис</a></li>
           <li><a href="/download.html">Брошюра</a></li>
         </ul>
       </div>
@@ -96,6 +96,7 @@
   </tr>
  </tfoot>
       <tbody>
+        <tr><td class="active" colspan="4" align="center">Выделенные строки - опции которые вы добавили</td></tr>
    % my $i=1;
 % foreach my $opt(@$selopt) {      
   <tr class="success">
