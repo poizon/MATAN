@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use common::sense;
 use Mojolicious::Lite;
-use Digest::MD5 qw (md5_hex);
+#use Digest::MD5 qw (md5_hex);
 use lib qw(.);
 use MTN::DB;
 use MTN::Option::Manager;
@@ -57,11 +57,20 @@ post '/config' => sub {
   $model =~ s/[^0-9]+//g;
   my $usopt = $self->every_param('usopt');
   my $prn = MTN::Printer->new(idprinters => $model);
-  $prn->load;
+  
+  unless ($prn->load(speculative => 1)) {
+    $self->redirect_to('/');
+  }
+  
   my $pic = MTN::Picture::Manager->get_pictures(query => [model => $prn->model]);
   my $opt = MTN::Option::Manager->get_options(query => [model => $prn->model, include => 1]);
-  my $selopt = MTN::Option::Manager->get_options(query => [idoptions => $usopt]);
-  #$log->info(Dumper(@usopt));
+
+  my $selopt = [];
+  # если есть хотя бы одна выбранная опция
+  if ($usopt->[0]) {
+     $selopt = MTN::Option::Manager->get_options(query => [idoptions => $usopt]);
+  }
+  
   $self->stash(
                model     => $prn->model,
                id        => $model,
@@ -81,14 +90,13 @@ get '/download' => sub {
   my $prn = MTN::Printer->new(idprinters => $model);
   $prn->load;
   my $pic = MTN::Picture::Manager->get_pictures(query => [model => $prn->model]);
-  #my $opt = MTN::Option::Manager->get_options(query => [model => $prn->model, include => 1]);
+  
   $self->stash(
                id        => $model,
                model     => $prn->model,
                foto_main => $prn->foto_main,
                descr     => $prn->description,
                pictures  => $pic,
-               #options   => $opt,
               );
   
   $self->render('download');  
@@ -101,14 +109,13 @@ get '/service' => sub {
   my $prn = MTN::Printer->new(idprinters => $model);
   $prn->load;
   my $pic = MTN::Picture::Manager->get_pictures(query => [model => $prn->model]);
-  #my $opt = MTN::Option::Manager->get_options(query => [model => $prn->model, include => 1]);
+  
   $self->stash(
                id        => $model,
                model     => $prn->model,
                foto_main => $prn->foto_main,
                descr     => $prn->description,
                pictures  => $pic,
-               #options   => $opt,
               );
   $self->render('service'); 
 };
@@ -118,4 +125,3 @@ app->log->level($cfg->{log_level});
 app->sessions->default_expiration($cfg->{session_exp});
 app->start;
 
-### SUBS ###

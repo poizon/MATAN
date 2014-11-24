@@ -10,7 +10,7 @@ __PACKAGE__->meta->setup(
     columns => [
         idpic    => { type => 'integer', not_null => 1 },
         img      => { type => 'varchar', length => 45 },
-        name     => { type => 'varchar', length => 45 },
+        name     => { type => 'varchar', length => 100 },
         descript => { type => 'varchar', length => 100 },
         model => { type => 'varchar', length => 45 }
     ],
