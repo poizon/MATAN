@@ -7,6 +7,8 @@ use MTN::DB;
 use MTN::Option::Manager;
 use MTN::Picture::Manager;
 use MTN::Printer::Manager;
+use MTN::Inform::Manager;
+use MTN::Order::Manager;
 use Data::Dumper;
 
 # глобальные настройки
@@ -118,6 +120,27 @@ get '/service' => sub {
                pictures  => $pic,
               );
   $self->render('service'); 
+};
+
+get '/info/:id' => => {id => '1'} => sub {
+  my $self   = shift;
+  my $model   = $self->session('id') || '1';# читаем id из куков
+  my $id = $self->param('id');
+  $id =~ s/[^0-9]+//g;
+  my $info = MTN::Inform->new(idinform => $id);
+  
+  unless ($info->load(speculative => 1)) {
+    $self->redirect_to('/');
+  }
+  
+  $self->stash(
+               id   => $id,
+               model => $model,
+               info => $info,
+              );
+  
+  $self->render('info');
+  
 };
 
 app->secrets([$cfg->{secret}]);

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+
+    <title>Matan Barak</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/bootstrap/js/html5shiv.min.js"></script>
+      <script src="/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="/bootstrap/css/carousel.css" rel="stylesheet">
+    <link href="/bootstrap/css/justified-nav.css" rel="stylesheet">
+    <link href="/bootstrap/css/tooltip-viewport.css" rel="stylesheet">
+  </head>
+
+<body>
+%= include 'menu';
+
+
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="/img/info/<%= $info->picture %>"  style="width: 800px; height: auto;" alt="<%= $info->name %>">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1><%= $info->name %></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.carousel -->
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-justified">
+          <li><a href="/model/<%= $model %>.html">Опции</a></li>
+          <li><a href="#">Итого</a></li>
+          <li><a href="/service.html">Сервис</a></li>
+           <li class="active"><a href="/download.html">Брошюра</a></li>
+        </ul>
+      </div>
+<%= $info->descript %>
+<hr>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/bootstrap/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/assets/js/docs.min.js"></script>
+    <script src="/bootstrap/js/tooltip-viewport.js"></script>
+</body>
+</html>
