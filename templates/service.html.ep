@@ -24,7 +24,7 @@
     <!-- Custom styles for this template -->
     <link href="/bootstrap/css/carousel.css" rel="stylesheet">
     <link href="/bootstrap/css/justified-nav.css" rel="stylesheet">
-    <link href="/bootstrap/css/tooltip-viewport.css" rel="stylesheet">
+    <!--<link href="/bootstrap/css/tooltip-viewport.css" rel="stylesheet">-->
   </head>
 
 <body>
@@ -94,6 +94,6 @@
     <script src="/bootstrap/js/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/bootstrap/assets/js/docs.min.js"></script>
-    <script src="/bootstrap/js/tooltip-viewport.js"></script>
+    <!--<script src="/bootstrap/js/tooltip-viewport.js"></script>-->
 </body>
 </html>

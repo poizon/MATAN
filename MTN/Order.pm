@@ -13,6 +13,7 @@ __PACKAGE__->meta->setup(
         tel      => { type => 'varchar', length => 15 },
         email    => { type => 'varchar', length => 50 },
         options  => { type => 'varchar', length => 150 },
+        model    => { type => 'integer'},
     ],
 
     primary_key_columns => [ 'idorders' ],

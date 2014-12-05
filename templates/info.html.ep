@@ -59,7 +59,10 @@
            <li class="active"><a href="/download.html">Брошюра</a></li>
         </ul>
       </div>
-<%= $info->descript %>
+      
+<h3 align="center"><%= flash 'message' %></h3>
+
+<%== $info->descript %>
 <hr>
     <!-- Bootstrap core JavaScript
     ================================================== -->

@@ -24,7 +24,8 @@
     <!-- Custom styles for this template -->
     <link href="/bootstrap/css/carousel.css" rel="stylesheet">
     <link href="/bootstrap/css/justified-nav.css" rel="stylesheet">
-    <link href="/bootstrap/css/tooltip-viewport.css" rel="stylesheet">
+    <!--<link href="/bootstrap/css/tooltip-viewport.css" rel="stylesheet">-->
+    <link href="/bootstrap/css/bootstrapValidator.min.css" rel="stylesheet">
   </head>
 
 <body>
@@ -117,13 +118,77 @@
   %}
   </tbody>
 </table>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+  Связаться с диллером
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    
+    <div class="modal-content">
+      
+      <form role="form" class="form-horizontal" action="/diller" method="post" id="attributeForm">
+        
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Контактная информация</h4>
+      </div>
+      
+  <div class="modal-body">
+  
+  <div class="form-group">
+    <label for="InputTel" class="col-sm-4 control-label">Ваше имя</label>
+     <div class="col-sm-6">
+    <input type="text" class="form-control" id="InputName" placeholder="Как Вас зовут?" name="client" data-bv-notempty="true" data-bv-notempty-message="Пожалуйста, укажите Ваше имя">
+     </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="InputEmail" class="col-sm-4 control-label">Ваш Email</label>
+    <div class="col-sm-6">
+    <input type="email" class="form-control" id="InputEmail" placeholder="Укажите email" name="email" data-bv-notempty="true" data-bv-notempty-message="Пожалуйста, укажите Ваш email">
+      </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="InputTel" class="col-sm-4 control-label">Телефон для связи</label>
+    <div class="col-sm-6">
+    <input type="text" class="form-control" id="InputTel" placeholder="8 900 1234567" name="tel" data-bv-notempty="true" data-bv-notempty-message="Пожалуйста, укажите Ваш телефон">
+      </div>
+  </div>
+         
+      </div>
+  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+      </div>
+      </form>
+    </div>
+    
+  </div>
+  
+</div>
+
+
 <hr>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/bootstrap/js/modal.js"></script>
     <script src="/bootstrap/js/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/bootstrap/assets/js/docs.min.js"></script>
-    <script src="/bootstrap/js/tooltip-viewport.js"></script>
+    <!--<script src="/bootstrap/js/tooltip-viewport.js"></script>-->
+    <script>
+     $(document).ready(function() {
+        $('#attributeForm').bootstrapValidator();
+    });
+  </script>
+    <script src="/bootstrap/js/bootstrapValidator.min.js"></script>
 </body>
 </html>

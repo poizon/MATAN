@@ -56,8 +56,11 @@ get '/model/:model' => {model => '1'} => sub {
 post '/config' => sub {
   my $self   = shift;
   my $model   = $self->session('id') || '1';# читаем id из куков
-  $model =~ s/[^0-9]+//g;
   my $usopt = $self->every_param('usopt');
+  # сохраняем в сессию список опций через запятую
+  my $sess_opt = join(',',@$usopt);
+  $self->session(options => $sess_opt);
+  
   my $prn = MTN::Printer->new(idprinters => $model);
   
   unless ($prn->load(speculative => 1)) {
@@ -141,6 +144,23 @@ get '/info/:id' => => {id => '1'} => sub {
   
   $self->render('info');
   
+};
+
+post '/diller' => sub {
+  my $self   = shift;
+  my $model   = $self->session('id');# читаем модель из куков
+  my $opt = $self->session('options');# читаем опции из куков
+  my $client = substr($self->param('client'),0,98);
+  my $email = substr($self->param('email'),0,49);
+  
+  my $tel = $self->param('tel');
+  $tel =~ s/[^0-9]+//g;
+  $tel = substr($tel,0,14);
+  
+  my $ord = MTN::Order->new(client => $client,tel => $tel, email => $email, options => $opt, model => $model);
+  $ord->save;
+  $self->flash(message => 'Спасибо, ' . $client . ' мы свяжемся с Вами в самое ближайшее время!');
+  $self->redirect_to('/info/16.html');
 };
 
 app->secrets([$cfg->{secret}]);
