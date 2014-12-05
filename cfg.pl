@@ -157,7 +157,7 @@ post '/diller' => sub {
   $tel =~ s/[^0-9]+//g;
   $tel = substr($tel,0,14);
   
-  my $ord = MTN::Order->new(client => $client,tel => $tel, email => $email, options => $opt, model => $model);
+  my $ord = MTN::Order->new(client => $client,tel => $tel, email => $email, options => $opt, model => $model, status => 0);
   $ord->save;
   $self->flash(message => 'Спасибо, ' . $client . ' мы свяжемся с Вами в самое ближайшее время!');
   $self->redirect_to('/info/16.html');

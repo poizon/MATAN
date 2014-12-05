@@ -14,6 +14,7 @@ __PACKAGE__->meta->setup(
         email    => { type => 'varchar', length => 50 },
         options  => { type => 'varchar', length => 150 },
         model    => { type => 'integer'},
+        status   => { type => 'char', length => 1 },
     ],
 
     primary_key_columns => [ 'idorders' ],

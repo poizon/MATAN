@@ -19,37 +19,36 @@ use IO::File;
 
 ## GLOBAL VARS ##
 my $path = absPath('sender.pl');
-my $cfg = parse_php("$path/config.php");
+
 openPidFile("$path/.mypid");
 my $pid = $$;
-my $dbh = db_connect($cfg);
+#$host,$db,$user,$pass
+my $dbh = db_connect('qiwi.giftec.ru','web','web','web');
+
 my $logfile = "$path/logfile.txt";
 # глобальные переменные для хранения списка адресов, настроек сервера
 my ($emails,$mailserver,$maillist);
+
 # настройки почтового сервера
-$mailserver = $dbh->selectrow_hashref(qq{SELECT mailhost,username,password,mail_from,
-                                                timeout,mail_to,helo_domain
-                                         FROM email_config WHERE id = 1});
-# база адресов для рассылки
-$emails = $dbh->selectall_arrayref(qq{SELECT email,code,DATE_FORMAT(date_reg,'%d.%m.%Y')
-                                             FROM email_db WHERE subscribe = 1});
+my %mailserver = (
+                  mailhost => 'dsrv.giftec.ru',
+                  username => 'Report@giftec.ru',
+                  password => 'rR12345678',
+                  mail_from => 'GIFTEC <Report@giftec.ru>',
+                  timeout   => 10,
+                  helo_domain => 'giftec.ru',
+                  mail_to     => 'pavel@giftec.ru'
+                  );
+
 # выбираем рассылки которые должны быть отправлены сегодня
-$maillist = $dbh->selectall_arrayref(qq{SELECT name,body,id_send,type FROM email_send WHERE activate<>'N'
-                                            AND date_send =  DATE_FORMAT( CURRENT_TIMESTAMP( ) , '%Y-%m-%d' )});
+$maillist = $dbh->selectall_arrayref(qq{SELECT idorders,client,email,tel,options, model FROM orders WHERE status='0'});
 
 for my $subscr(@$maillist) {
 # если рассылка общая - отправляем сразу всем    
-    if($subscr->[3] eq 'A') {
-        # Отправляем рассылку
-        send_mail($mailserver, $emails, $subscr->[0], $subscr->[1], $subscr->[2],$subscr->[3]);
-    } # если персонифицированная, то отправляем каждому свое письмо
-    else {
-            for my $m(@$emails) {
-                send_mail($mailserver, $m->[0], $subscr->[0], $subscr->[1], $subscr->[2],$subscr->[3]);
-            }
-    }
+# Отправляем рассылку
+        send_mail(\%mailserver, $subscr->[1], $subscr->[2], $subscr->[3],$subscr->[4],$subscr->[5]);
 # обновляем статус рассылки и сбрасываем активацию
-$dbh->do(qq{UPDATE email_send SET status = 'Y', activate='N' WHERE id_send = '$subscr->[2]'});
+#$dbh->do(qq{UPDATE orders SET status = '1' WHERE idorders = '$subscr->[0]'});
 }
 
 # чистим ща собой pid файл
@@ -57,54 +56,43 @@ END {unlink "$path/.mypid" if $pid==$$;};
 
 ### SUBS
 sub send_mail {
-    my ($ms,$email,$subject,$body,$id_send, $type) = @_;
+    my ($ms,$client,$email,$tel,$options,$model) = @_;
     my $result;# для возврата результата в лог
+    my $body = "$client $email $tel $options $model";
     # создаем сессию SMTP
     my $smtp = Net::SMTP_auth->new($ms->{mailhost},
                                    Hello => $ms->{helo_domain},
                                    Timeout => $ms->{timeout},
-                                   Debug => 0) or my_log('ERR', $!);
+                                   Debug => 1) or my_log('ERR', $!);
 # пишем логи
     if($smtp) {
-        my_log('connect','OK',$id_send);
+        my_log('connect','OK');
     } else {
         my_log('ERR',$smtp->message());
     }
 
     $smtp->auth('CRAM-MD5', $ms->{username}, $ms->{password});
-    my_log('auth',$smtp->message(),$id_send);
+    my_log('auth',$smtp->message());
 
     $smtp->mail($ms->{mail_from});
-    # общая рассылка
-    if($type eq 'A') {
     # это выполнять в блоке eval
         eval { 
             for my $m(@$email) {
                 $smtp->to($m->[0],{SkipBad => 1 });
             }
         };
-    } # персонифицированная
-    else {
-        eval {        
-            $smtp->recipient($email,{SkipBad => 1 });
-        };
-    }
+    
         my_log('WARN',$@) if $@;# перехватываем исключения
-    # общая рассылка
-    if ($type eq 'A') {    
     # выполнять в блоке eval
-        eval {$body = prepare_body($ms->{mail_from},$ms->{mail_to},$subject,$body);};
-    } # персонифицированная
-    else {
-        eval {$body = prepare_body($ms->{mail_from},$email,$subject,$body);};    
-    }
-        my_log('WARN',$@) if $@;# перехватываем исключения
+    eval {$body = prepare_body($ms->{mail_from},$ms->{mail_to},'Заявка от конфигуратора',$body);}; ####
+    
+    my_log('WARN',$@) if $@;# перехватываем исключения
     $smtp->data();
     $smtp->datasend($body);
     $smtp->dataend();
     # пишем в лог последний ответ сервера через временную переменную
     my $tmp = $smtp->message();
-    my_log('result',$tmp,$id_send);
+    my_log('result',$tmp);
     $smtp->quit;
 }
 # готовим заголовок
@@ -189,61 +177,44 @@ sub make_body {
 }
 # коннект к бд
 sub db_connect {
-    my $cfg = shift;
+    my ($host,$db,$user,$pass) = @_;
     my $dbh = DBI->connect_cached(
-        "DBI:mysql:host=$cfg->{hostname};database=$cfg->{dbname}",
-        $cfg->{username},
-        $cfg->{password},
+        "DBI:mysql:host=$host;database=$db",
+        $user,
+        $pass,
         { PrintError => 1, RaiseError => 0, mysql_enable_utf8 => 1 }
     );
     
     return $dbh ? $dbh : die "Can't connect to db";
 }
-# разбор файла пхп с конфигурацией
-sub parse_php {
-    my $file = shift;
-    my %config;
-# читаем пхп файл в хэш
-    open( DB, "<:utf8", $file ) or my_log('ERR',$!);
-    while (<DB>) {
-        next if (/^<|>/);    # сразу пропускаем комментарии
-        chomp;
-        s/^\s+//;             # Убрать начальные пропуски
-        s/\s+$//;             # Убрать конечные пропуски
-        s/^\$//;             # Убрать начальные $
-        s/;$//;             # Убрать конечные ;
-        s/'//g;             # Убрать '
-        next unless length;   # Что-нибудь осталось?
-        my ( $key, $value ) = split( /\s*=\s*/, $_, 2 );
-        $config{lc($key)} = $value if ( defined($key) && defined($value) );
-    }
-
-    return \%config;
-}
+## разбор файла пхп с конфигурацией
+#sub parse_php {
+#    my $file = shift;
+#    my %config;
+## читаем пхп файл в хэш
+#    open( DB, "<:utf8", $file ) or my_log('ERR',$!);
+#    while (<DB>) {
+#        next if (/^<|>/);    # сразу пропускаем комментарии
+#        chomp;
+#        s/^\s+//;             # Убрать начальные пропуски
+#        s/\s+$//;             # Убрать конечные пропуски
+#        s/^\$//;             # Убрать начальные $
+#        s/;$//;             # Убрать конечные ;
+#        s/'//g;             # Убрать '
+#        next unless length;   # Что-нибудь осталось?
+#        my ( $key, $value ) = split( /\s*=\s*/, $_, 2 );
+#        $config{lc($key)} = $value if ( defined($key) && defined($value) );
+#    }
+#
+#    return \%config;
+#}
 # пишем логи в файл и в БД
 sub my_log {
-    my ($code, $msg, $id_send) = @_;
+    my ($code, $msg) = @_;
     $msg =~ s/\n/ /g;
-    # если передан id пишем в БД
-    if($id_send) {
-        # проверяем есть ли запись с таким id_send в таблице с пустям полем date_send
-        my $res = $dbh->selectrow_arrayref(qq{SELECT id FROM `email_log` WHERE `id_send` = '$id_send'
-                                 AND `date_send` IS NOT NULL});
-        # если записей нет, вставялем строку
-        unless($res->[0]) {
-            $dbh->do(qq{INSERT INTO `email_log` (id_send,date_send) VALUES('$id_send',CURRENT_TIMESTAMP)})
-        }
-        # в значении $code - передается имя столбца в БД
-        # code IN (connect, auth, result)
-        eval { $dbh->do(qq{UPDATE email_log SET $code = '$msg',date_send = CURRENT_TIMESTAMP  WHERE id_send = '$id_send'}); };
-        # если ошибка записи в БД, то записать это
-        if($@) {$dbh->do(qq{UPDATE email_log SET $code = 'Some error',date_send = CURRENT_TIMESTAMP  WHERE id_send = '$id_send'});}
-    }
-    else {
-        open(LOG,">>",$logfile) || die "can't open log file: $!";
+    open(LOG,">>",$logfile) || die "can't open log file: $!";
         print LOG localtime() . ':' . $code . ':' . $msg,"\n";
-        close(LOG);
-    }
+    close(LOG);
     exit if $code eq 'ERR';
     return 1;
 }

@@ -1,0 +1,38 @@
+Fri Dec  5 16:01:41 2014:connect:OK
+Fri Dec  5 16:01:42 2014:auth:Authentication succeeded 
+Fri Dec  5 16:01:42 2014:result:valid RCPT command must precede DATA SMTP synchronization error 
+Fri Dec  5 16:01:42 2014:connect:OK
+Fri Dec  5 16:01:42 2014:auth:Authentication succeeded 
+Fri Dec  5 16:01:42 2014:result:valid RCPT command must precede DATA SMTP synchronization error 
+Fri Dec  5 16:01:42 2014:connect:OK
+Fri Dec  5 16:01:42 2014:auth:Authentication succeeded 
+Fri Dec  5 16:01:42 2014:result:valid RCPT command must precede DATA SMTP synchronization error 
+Fri Dec  5 16:01:43 2014:connect:OK
+Fri Dec  5 16:01:43 2014:auth:Authentication succeeded 
+Fri Dec  5 16:01:43 2014:result:valid RCPT command must precede DATA SMTP synchronization error 
+Fri Dec  5 16:01:43 2014:connect:OK
+Fri Dec  5 16:01:43 2014:auth:Authentication succeeded 
+Fri Dec  5 16:01:43 2014:result:valid RCPT command must precede DATA SMTP synchronization error 
+Fri Dec  5 16:01:43 2014:connect:OK
+Fri Dec  5 16:01:43 2014:auth:Authentication succeeded 
+Fri Dec  5 16:01:43 2014:result:valid RCPT command must precede DATA SMTP synchronization error 
+Fri Dec  5 16:07:56 2014:connect:OK
+Fri Dec  5 16:07:59 2014:auth:Authentication succeeded 
+Fri Dec  5 16:14:11 2014:connect:OK
+Fri Dec  5 16:14:11 2014:auth:5.7.4 Unrecognized authentication type  
+Fri Dec  5 16:14:11 2014:result:5.5.2 Need Rcpt command. 5.3.3 Unrecognized command 
+Fri Dec  5 16:14:11 2014:connect:OK
+Fri Dec  5 16:14:11 2014:auth:5.7.4 Unrecognized authentication type  
+Fri Dec  5 16:14:11 2014:result:5.5.2 Need Rcpt command. 5.3.3 Unrecognized command 
+Fri Dec  5 16:14:11 2014:connect:OK
+Fri Dec  5 16:14:11 2014:auth:5.7.4 Unrecognized authentication type  
+Fri Dec  5 16:14:11 2014:result:5.5.2 Need Rcpt command. 5.3.3 Unrecognized command 
+Fri Dec  5 16:14:11 2014:connect:OK
+Fri Dec  5 16:14:11 2014:auth:5.7.4 Unrecognized authentication type  
+Fri Dec  5 16:14:11 2014:result:5.5.2 Need Rcpt command. 5.3.3 Unrecognized command 
+Fri Dec  5 16:14:11 2014:connect:OK
+Fri Dec  5 16:14:11 2014:auth:5.7.4 Unrecognized authentication type  
+Fri Dec  5 16:14:11 2014:result:5.5.2 Need Rcpt command. 5.3.3 Unrecognized command 
+Fri Dec  5 16:14:11 2014:connect:OK
+Fri Dec  5 16:14:11 2014:auth:5.7.4 Unrecognized authentication type  
+Fri Dec  5 16:14:11 2014:result:5.5.2 Need Rcpt command. 5.3.3 Unrecognized command 
