@@ -1,38 +1,26 @@
-Fri Dec  5 16:01:41 2014:connect:OK
-Fri Dec  5 16:01:42 2014:auth:Authentication succeeded 
-Fri Dec  5 16:01:42 2014:result:valid RCPT command must precede DATA SMTP synchronization error 
-Fri Dec  5 16:01:42 2014:connect:OK
-Fri Dec  5 16:01:42 2014:auth:Authentication succeeded 
-Fri Dec  5 16:01:42 2014:result:valid RCPT command must precede DATA SMTP synchronization error 
-Fri Dec  5 16:01:42 2014:connect:OK
-Fri Dec  5 16:01:42 2014:auth:Authentication succeeded 
-Fri Dec  5 16:01:42 2014:result:valid RCPT command must precede DATA SMTP synchronization error 
-Fri Dec  5 16:01:43 2014:connect:OK
-Fri Dec  5 16:01:43 2014:auth:Authentication succeeded 
-Fri Dec  5 16:01:43 2014:result:valid RCPT command must precede DATA SMTP synchronization error 
-Fri Dec  5 16:01:43 2014:connect:OK
-Fri Dec  5 16:01:43 2014:auth:Authentication succeeded 
-Fri Dec  5 16:01:43 2014:result:valid RCPT command must precede DATA SMTP synchronization error 
-Fri Dec  5 16:01:43 2014:connect:OK
-Fri Dec  5 16:01:43 2014:auth:Authentication succeeded 
-Fri Dec  5 16:01:43 2014:result:valid RCPT command must precede DATA SMTP synchronization error 
-Fri Dec  5 16:07:56 2014:connect:OK
-Fri Dec  5 16:07:59 2014:auth:Authentication succeeded 
-Fri Dec  5 16:14:11 2014:connect:OK
-Fri Dec  5 16:14:11 2014:auth:5.7.4 Unrecognized authentication type  
-Fri Dec  5 16:14:11 2014:result:5.5.2 Need Rcpt command. 5.3.3 Unrecognized command 
-Fri Dec  5 16:14:11 2014:connect:OK
-Fri Dec  5 16:14:11 2014:auth:5.7.4 Unrecognized authentication type  
-Fri Dec  5 16:14:11 2014:result:5.5.2 Need Rcpt command. 5.3.3 Unrecognized command 
-Fri Dec  5 16:14:11 2014:connect:OK
-Fri Dec  5 16:14:11 2014:auth:5.7.4 Unrecognized authentication type  
-Fri Dec  5 16:14:11 2014:result:5.5.2 Need Rcpt command. 5.3.3 Unrecognized command 
-Fri Dec  5 16:14:11 2014:connect:OK
-Fri Dec  5 16:14:11 2014:auth:5.7.4 Unrecognized authentication type  
-Fri Dec  5 16:14:11 2014:result:5.5.2 Need Rcpt command. 5.3.3 Unrecognized command 
-Fri Dec  5 16:14:11 2014:connect:OK
-Fri Dec  5 16:14:11 2014:auth:5.7.4 Unrecognized authentication type  
-Fri Dec  5 16:14:11 2014:result:5.5.2 Need Rcpt command. 5.3.3 Unrecognized command 
-Fri Dec  5 16:14:11 2014:connect:OK
-Fri Dec  5 16:14:11 2014:auth:5.7.4 Unrecognized authentication type  
-Fri Dec  5 16:14:11 2014:result:5.5.2 Need Rcpt command. 5.3.3 Unrecognized command 
+Mon Dec  8 12:06:47 2014:connect:OK
+Mon Dec  8 12:06:47 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVN12kNFLEqIxsLE30000022b@dsrv.giftec.ru> Queued mail for delivery 
+Mon Dec  8 12:19:42 2014:connect:OK
+Mon Dec  8 12:19:42 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVgu93XSbYLf8ixxt0000022c@dsrv.giftec.ru> Queued mail for delivery 
+Mon Dec  8 12:19:42 2014:connect:OK
+Mon Dec  8 12:19:42 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVFRaqbC8wSA1XvpF0000022d@dsrv.giftec.ru> Queued mail for delivery 
+Mon Dec  8 12:19:42 2014:connect:OK
+Mon Dec  8 12:19:42 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVVjCRGryWtIIZS2T0000022e@dsrv.giftec.ru> Queued mail for delivery 
+Mon Dec  8 12:19:42 2014:connect:OK
+Mon Dec  8 12:19:42 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVRqf69aZbLAX3cf30000022f@dsrv.giftec.ru> Queued mail for delivery 
+Mon Dec  8 12:19:42 2014:connect:OK
+Mon Dec  8 12:19:42 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVednHM3SOlbpH71y00000230@dsrv.giftec.ru> Queued mail for delivery 
+Mon Dec  8 12:19:42 2014:connect:OK
+Mon Dec  8 12:19:42 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVEXUIEAOeIiGXix400000231@dsrv.giftec.ru> Queued mail for delivery 
+Mon Dec  8 12:27:29 2014:connect:OK
+Mon Dec  8 12:27:29 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVA2DreBBsQwY6YHk00000232@dsrv.giftec.ru> Queued mail for delivery 
+Mon Dec  8 12:27:29 2014:connect:OK
+Mon Dec  8 12:27:29 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVidcDjoYAPNXRPmc00000233@dsrv.giftec.ru> Queued mail for delivery 
+Mon Dec  8 12:27:29 2014:connect:OK
+Mon Dec  8 12:27:29 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVarcR4ZDgC81Tbdk00000234@dsrv.giftec.ru> Queued mail for delivery 
+Mon Dec  8 12:27:29 2014:connect:OK
+Mon Dec  8 12:27:29 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVSmLAztxc1o8yfog00000235@dsrv.giftec.ru> Queued mail for delivery 
+Mon Dec  8 12:27:29 2014:connect:OK
+Mon Dec  8 12:27:29 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVkJXrRjbDt3HvoFO00000236@dsrv.giftec.ru> Queued mail for delivery 
+Mon Dec  8 12:27:29 2014:connect:OK
+Mon Dec  8 12:27:29 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVAmEaJswFCHOzyfy00000237@dsrv.giftec.ru> Queued mail for delivery 
