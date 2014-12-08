@@ -87,24 +87,21 @@
           <th>#</th>
           <th>Название</th>
           <th>Описание</th>
-          <th>Цена</th>
         </tr>
       </thead>
    <tfoot>
   <tr>
-   <td colspan="3">Итого:</td>
-   <td>Звоните </td>
+   <td colspan="3"></td>
   </tr>
  </tfoot>
       <tbody>
-        <tr><td class="active" colspan="4" align="center">Выделенные строки - опции которые вы добавили</td></tr>
+        <tr><td class="active" colspan="3" align="center">Выделенные строки - опции которые вы добавили</td></tr>
    % my $i=1;
 % foreach my $opt(@$selopt) {      
   <tr class="success">
   <td><%= $i++ %></td>
   <td><%= $opt->name %></td>
   <td><%= $opt->description %></td>
-  <td>звоните</td>
 </tr>
 %}
 
@@ -113,7 +110,6 @@
   <td><%= $i++ %></td>
   <td><%= $opt->name %></td>
   <td><%= $opt->description %></td>
-  <td><%= $opt->price %> руб.</td>
 </tr>
   %}
   </tbody>

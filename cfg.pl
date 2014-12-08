@@ -1,7 +1,6 @@
 #!/usr/bin/env perl
 use common::sense;
 use Mojolicious::Lite;
-#use Digest::MD5 qw (md5_hex);
 use lib qw(.);
 use MTN::DB;
 use MTN::Option::Manager;
@@ -9,7 +8,7 @@ use MTN::Picture::Manager;
 use MTN::Printer::Manager;
 use MTN::Inform::Manager;
 use MTN::Order::Manager;
-use Data::Dumper;
+#use Data::Dumper;
 
 # глобальные настройки
 my $cfg = plugin 'Config' => {file => 'app.conf'};
@@ -159,7 +158,7 @@ post '/diller' => sub {
   
   my $ord = MTN::Order->new(client => $client,tel => $tel, email => $email, options => $opt, model => $model, status => 0);
   $ord->save;
-  $self->flash(message => 'Спасибо, ' . $client . ' мы свяжемся с Вами в самое ближайшее время!');
+  $self->flash(message => 'Спасибо, ' . $client . '! Мы свяжемся с Вами в самое ближайшее время!');
   $self->redirect_to('/info/16.html');
 };
 

@@ -51,6 +51,8 @@ sub get_body {
     $model = $dbh->selectrow_hashref(qq{SELECT model FROM web.printers where idprinters=$model});
 
     $options = $dbh->selectall_arrayref(qq{SELECT `name`,`price` FROM web.options where model = '$model->{model}' and idoptions IN($options)});
+    # для выбора уже включенных опций
+    my $inc_opt = $dbh->selectall_arrayref(qq{SELECT `name`,`price` FROM web.options where model = '$model->{model}' and include = '1'});
     
     my $body = qq(
     <table>
@@ -61,9 +63,12 @@ sub get_body {
     );
     
     for my $opt(@$options) {
-        $body.= qq(<tr><td>$opt->[0]</td><td>$opt->[1]</td></tr>);
+        $body.= qq(<tr><td>$opt->[0]</td><td align="right">$opt->[1]</td></tr>);
     }
     
+    for my $opt(@$inc_opt) {
+        $body.= qq(<tr bgcolor="#d0e9c6"><td>$opt->[0]</td><td align="right">$opt->[1]</td></tr>);
+    }
     $body.= qq(</table>);
     
     return $body;
