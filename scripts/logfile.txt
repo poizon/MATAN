@@ -1,8 +1,0 @@
-Mon Dec  8 14:04:43 2014:connect:OK
-Mon Dec  8 14:04:43 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVgcOrBLSAQV6uPDV00000244@dsrv.giftec.ru> Queued mail for delivery 
-Mon Dec  8 14:08:33 2014:connect:OK
-Mon Dec  8 14:08:33 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVniSnRMWuLn5U9T300000245@dsrv.giftec.ru> Queued mail for delivery 
-Mon Dec  8 14:11:58 2014:connect:OK
-Mon Dec  8 14:11:58 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVTGJ2TUSzbAUfKRf00000246@dsrv.giftec.ru> Queued mail for delivery 
-Mon Dec  8 14:25:44 2014:connect:OK
-Mon Dec  8 14:25:44 2014:result:Start mail input; end with <CRLF>.<CRLF> 2.6.0 <DSRVcjcMzfoV1qdiixj00000247@dsrv.giftec.ru> Queued mail for delivery 

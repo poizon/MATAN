@@ -26,9 +26,9 @@ my $logfile = "$path/logfile.txt";
 my ($emails,$mailserver,$maillist);
 
 # настройки почтового сервера
-my %ms = ( username => 'Report@giftec.ru', password => 'rR12345678',
+my %ms = ( username => 'Report@giftec.ru', password => '',
           mailhost => 'dsrv.giftec.ru', mail_from => 'Report@giftec.ru',
-          mail_to => 'p.kuptsov@giftec.ru' );
+          mail_to => 'pavel@giftec.ru' );
 
 # выбираем рассылки которые должны быть отправлены сегодня
 $maillist = $dbh->selectall_arrayref(qq{SELECT idorders,client,email,tel,options, model FROM orders WHERE status='0'});
