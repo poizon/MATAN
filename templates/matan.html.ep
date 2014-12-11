@@ -95,9 +95,9 @@
 % }
    <%= $opt->name %>
   </label>
-   <button class="btn btn-default btn-xs tooltip-right" title="<%= $opt->description %>">
+   <div class="btn btn-default btn-xs tooltip-right" title="<%= $opt->description %>">
     <span class="glyphicon glyphicon-question-sign"></span>
-   </button>
+   </div>
 </div>
 % }
  <button type="submit" class="btn btn-default btn-lg btn-block">Показать конфигурацию</button>
