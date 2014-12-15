@@ -19,7 +19,7 @@ my $path = absPath('sender_ee.pl');
 openPidFile("$path/.mypid");
 my $pid = $$;
 #$host,$db,$user,$pass
-my $dbh = db_connect('qiwi.giftec.ru','web','web','web');
+my $dbh = db_connect('localhost','web_conf','web_conf','w3bc0nf1gur4t0r');
 
 my $logfile = "$path/logfile.txt";
 # глобальные переменные для хранения списка адресов, настроек сервера
@@ -48,11 +48,11 @@ END {unlink "$path/.mypid" if $pid==$$;};
 sub get_body {
     my ($client,$email,$tel,$options, $model) =@_;
     
-    $model = $dbh->selectrow_hashref(qq{SELECT model FROM web.printers where idprinters=$model});
+    $model = $dbh->selectrow_hashref(qq{SELECT model FROM printers where idprinters=$model});
 
-    $options = $dbh->selectall_arrayref(qq{SELECT `name`,`price` FROM web.options where model = '$model->{model}' and idoptions IN($options)});
+    $options = $dbh->selectall_arrayref(qq{SELECT `name`,`price` FROM options where model = '$model->{model}' and idoptions IN($options)});
     # для выбора уже включенных опций
-    my $inc_opt = $dbh->selectall_arrayref(qq{SELECT `name`,`price` FROM web.options where model = '$model->{model}' and include = '1'});
+    my $inc_opt = $dbh->selectall_arrayref(qq{SELECT `name`,`price` FROM options where model = '$model->{model}' and include = '1'});
     
     my $body = qq(
     <table>
