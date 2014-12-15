@@ -20,6 +20,7 @@ openPidFile("$path/.mypid");
 my $pid = $$;
 #$host,$db,$user,$pass
 my $dbh = db_connect('localhost','web_conf','web_conf','w3bc0nf1gur4t0r');
+#my $dbh = db_connect('qiwi','web','web','web');
 
 my $logfile = "$path/logfile.txt";
 # глобальные переменные для хранения списка адресов, настроек сервера
