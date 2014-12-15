@@ -14,7 +14,7 @@ use HTML::Parser;
 use IO::File;
 
 ## GLOBAL VARS ##
-my $path = absPath('sender_ee.pl');
+my $path = absPath('sender.pl');
 #DBI->trace('SQL');
 openPidFile("$path/.mypid");
 my $pid = $$;
@@ -26,8 +26,8 @@ my $logfile = "$path/logfile.txt";
 my ($emails,$mailserver,$maillist);
 
 # настройки почтового сервера
-my %ms = ( username => 'Report@giftec.ru', password => '',
-          mailhost => 'dsrv.giftec.ru', mail_from => 'Report@giftec.ru',
+my %ms = ( username => 'pavel', password => '',
+          mailhost => 'localhost', mail_from => 'Pavel@matan.giftec.ru',
           mail_to => 'pavel@giftec.ru' );
 
 # выбираем рассылки которые должны быть отправлены сегодня
@@ -79,7 +79,7 @@ sub send_mail {
     my $result;# для возврата результата в лог
     # создаем сессию SMTP
     my $smtp = Net::SMTP->new($ms{mailhost},
-                                   Hello => 'dsrv.giftec.ru',
+                                   Hello => 'matan.giftec.ru',
                                    Timeout => 20,
                                    Debug => 0) or my_log('ERR', $!);
 # пишем логи
